@@ -2105,6 +2105,7 @@ namespace operations_research {
 
 }  // namespace operations_research
 
+%include "ortools/constraint_solver/variables.h"
 %include "ortools/constraint_solver/local_search.h"
 
 %unignoreall
