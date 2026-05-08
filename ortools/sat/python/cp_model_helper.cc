@@ -2180,7 +2180,9 @@ PYBIND11_MODULE(cp_model_helper, m) {
       // Pre PEP8 compatibility.
       .def("Name", &Constraint::name)
       .def("Index", &Constraint::index)
-      .def("Proto", &Constraint::proto)
+      .def("Proto", &Constraint::proto, py::return_value_policy::reference,
+           py::keep_alive<1, 0>(),
+           "Returns the ConstraintProto of this constraint.")
       .def("WithName",
            [](Constraint* self, const std::string& name) {
              if (name.empty()) {
@@ -2288,7 +2290,9 @@ Raises:
                 t[0].cast<std::shared_ptr<CpModelProto>>(), t[1].cast<int>());
           }))
       // Pre PEP8 compatibility layer.
-      .def("Proto", &IntervalVar::proto)
+      .def("Proto", &IntervalVar::proto, py::return_value_policy::reference,
+           py::keep_alive<1, 0>(),
+           "Returns the interval constraint protobuf.")
       .def("Index", &IntervalVar::index)
       .def("Name", &IntervalVar::name)
       .def("StartExpr",
